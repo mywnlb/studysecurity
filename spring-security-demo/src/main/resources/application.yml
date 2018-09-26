@@ -6,7 +6,9 @@ spring:
     password: 123456
   session:
     store-type: none
+  redis:
+    password: 123456
 
 security:
   basic:
-    enabled: false
+    enabled: true

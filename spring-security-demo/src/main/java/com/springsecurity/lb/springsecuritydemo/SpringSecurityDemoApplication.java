@@ -1,5 +1,6 @@
 package com.springsecurity.lb.springsecuritydemo;
 
+import com.springsecurity.lb.springsecuritybrowse.BrowserSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,4 +18,5 @@ public class SpringSecurityDemoApplication {
     public String getHello(){
         return "hello";
     }
+
 }

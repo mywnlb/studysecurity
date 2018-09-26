@@ -19,23 +19,23 @@ public class QueueListener implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        while (true){
-            new Thread(() ->{
-                if(StringUtils.isNoneBlank(mockQueue.getCompleteOrder())){
-                    String ordernumber = mockQueue.getPlaceOrder();
-                    logger.info("返回订单处理结果:"+ordernumber);
-                    deferredResultHolder.getMap().get(ordernumber).setResult("place order success");
-                    mockQueue.setCompleteOrder(null);
-
-                }else {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }
+//        while (true){
+//            new Thread(() ->{
+//                if(StringUtils.isNoneBlank(mockQueue.getCompleteOrder())){
+//                    String ordernumber = mockQueue.getPlaceOrder();
+//                    logger.info("返回订单处理结果:"+ordernumber);
+//                    deferredResultHolder.getMap().get(ordernumber).setResult("place order success");
+//                    mockQueue.setCompleteOrder(null);
+//
+//                }else {
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).start();
+//        }
 
 
     }
