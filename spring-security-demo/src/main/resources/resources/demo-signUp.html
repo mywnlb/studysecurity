@@ -5,9 +5,9 @@
 <title>登录</title>
 </head>
 <body>
-	<h2>标准登录页面</h2>
-	<h3>表单登录</h3>
-	<form action="/authentication/require" method="post">
+	<h2>Demo注册页</h2>
+	
+	<form action="/user/regist" method="post">
 		<table>
 			<tr>
 				<td>用户名:</td> 
@@ -18,10 +18,12 @@
 				<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button type="submit">登录</button></td>
+				<td colspan="2">
+					<button type="submit" name="type" value="regist">注册</button>
+					<button type="submit" name="type" value="binding">绑定</button>
+				</td>
 			</tr>
 		</table>
 	</form>
-
 </body>
 </html>

@@ -12,3 +12,11 @@ spring:
 security:
   basic:
     enabled: true
+server:
+  port: 8088
+
+com:
+  imooc:
+    security:
+      browser:
+        signUpUrl: "/demo-signUp.html"
