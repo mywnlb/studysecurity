@@ -3,18 +3,26 @@
  */
 package com.imooc.security.core.properties;
 
-/**
- * 浏览器环境配置项
- * 
- * @author zhailiang
- *
- */
+
 public class BrowserProperties {
 
 	/**
-	 * 社交登录，如果需要用户注册，跳转的页面
+	 * 默认的登录页面
 	 */
 	private String signUpUrl = "/imooc-signUp.html";
+
+	/**
+	 * 登录响应的方式，默认是json
+	 */
+	private LoginResponseType loginResponseType = LoginResponseType.JSON;
+
+	public LoginResponseType getLoginResponseType() {
+		return loginResponseType;
+	}
+
+	public void setLoginResponseType(LoginResponseType loginResponseType) {
+		this.loginResponseType = loginResponseType;
+	}
 
 	public String getSignUpUrl() {
 		return signUpUrl;

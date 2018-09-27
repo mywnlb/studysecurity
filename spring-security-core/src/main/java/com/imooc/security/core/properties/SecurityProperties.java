@@ -6,9 +6,12 @@ package com.imooc.security.core.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author zhailiang
- *
- */
+ * @Author lb
+ * @Description 利用此注解将配置文件读入
+ * @Date 18:00 2018/9/27
+ * @Param
+ * @return
+ **/
 @ConfigurationProperties(prefix = "com.imooc.security")
 public class SecurityProperties {
 	

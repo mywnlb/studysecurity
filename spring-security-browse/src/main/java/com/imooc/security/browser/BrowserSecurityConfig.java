@@ -1,5 +1,7 @@
 package com.imooc.security.browser;
 
+import com.imooc.security.browser.authentication.SelfAuthenticationFailureHandler;
+import com.imooc.security.browser.authentication.SelfAuthenticationSuccessHandler;
 import com.imooc.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,14 +28,22 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private SelfAuthenticationSuccessHandler selfAuthenticationSuccessHandler;
+
+    @Autowired
+    private SelfAuthenticationFailureHandler selfAuthenticationFailureHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-             .loginPage(securityProperties.getBrowser().getSignUpUrl())
-             .loginProcessingUrl("/authentication/require")
-             .permitAll()
+             .loginPage("/authentication/require")
+             .loginProcessingUrl("/authentication/form")
+             .successHandler(selfAuthenticationSuccessHandler)
+             .failureHandler(selfAuthenticationFailureHandler)
              .and()
              .authorizeRequests()
+             .antMatchers(securityProperties.getBrowser().getSignUpUrl(),"/authentication/require").permitAll()
              .anyRequest()
              .authenticated()
              .and()
