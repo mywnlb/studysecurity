@@ -18,5 +18,9 @@ server:
 com:
   imooc:
     security:
-      browser:
-        signUpUrl: "/demo-signUp.html"
+#      browser:
+#        signUpUrl: "/demo-signUp.html"
+       code:
+         image:
+           length: 4
+           urls: /user,/user/*

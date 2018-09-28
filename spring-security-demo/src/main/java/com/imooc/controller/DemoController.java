@@ -2,6 +2,9 @@ package com.imooc.controller;
 
 import com.imooc.dto.User;
 import com.imooc.exception.UseNotException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,17 @@ public class DemoController {
 
         return list;
     }
+
+    @GetMapping("/user/me")
+    public Object getUserMe(Authentication authentication){
+        return authentication;
+    }
+
+    @GetMapping("/user/details")
+    public Object getUserDetails(@AuthenticationPrincipal UserDetails authentication){
+        return authentication;
+    }
+
 
     //PathVariable 如果不设置初值的时候，{}中的名称要和想传入的名称相同
     @GetMapping("/user/{username}")

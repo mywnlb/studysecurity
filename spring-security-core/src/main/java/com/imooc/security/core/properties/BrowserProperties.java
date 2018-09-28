@@ -9,7 +9,7 @@ public class BrowserProperties {
 	/**
 	 * 默认的登录页面
 	 */
-	private String signUpUrl = "/imooc-signUp.html";
+	private String signUpUrl = "/imooc-signIn.html";
 
 	/**
 	 * 登录响应的方式，默认是json
