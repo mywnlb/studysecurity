@@ -1,17 +1,15 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/security-demo?characterEncoding=utf8&serverTimezone=GMT&useSSL=false
     username: root
     password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
   session:
     store-type: none
   redis:
     password: 123456
 
-security:
-  basic:
-    enabled: true
+
 server:
   port: 8088
 

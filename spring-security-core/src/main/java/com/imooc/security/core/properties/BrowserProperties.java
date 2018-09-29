@@ -16,6 +16,19 @@ public class BrowserProperties {
 	 */
 	private LoginResponseType loginResponseType = LoginResponseType.JSON;
 
+	/**
+	 * 记住我的秒数
+	 */
+	private int rembermeSeconds = 36000;
+
+	public int getRembermeSeconds() {
+		return rembermeSeconds;
+	}
+
+	public void setRembermeSeconds(int rembermeSeconds) {
+		this.rembermeSeconds = rembermeSeconds;
+	}
+
 	public LoginResponseType getLoginResponseType() {
 		return loginResponseType;
 	}
