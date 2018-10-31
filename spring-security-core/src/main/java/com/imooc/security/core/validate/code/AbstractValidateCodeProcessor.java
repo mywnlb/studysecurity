@@ -14,7 +14,7 @@ import java.util.Map;
  * @author lb
  * @date 2018/09/29
  */
-public abstract class  AbstractValidateCodeProcessor<C extends ValidateVode> implements ValidateCodeProcessor{
+public abstract class  AbstractValidateCodeProcessor<C extends ValiDateVode> implements ValidateCodeProcessor{
     /**
      *  spring看到这种模式的自动注入会搜寻所有{@link ValidateCodeGenerator} 接口的实现
      */
@@ -73,7 +73,7 @@ public abstract class  AbstractValidateCodeProcessor<C extends ValidateVode> imp
      * @param validateCode
      */
     private void save(ServletWebRequest request, C validateCode) {
-        ValidateVode code = new ValidateVode(validateCode.getCode(),validateCode.getExpireTiem());
+        ValiDateVode code = new ValiDateVode(validateCode.getCode(),validateCode.getExpireTiem());
         validateCodeRepository.save(request,code,getValidateCodeType(request));
     }
 

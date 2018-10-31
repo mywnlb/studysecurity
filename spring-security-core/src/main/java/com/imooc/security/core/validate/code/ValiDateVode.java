@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
  * @author lb
  * @date 2018/09/29
  */
-public class ValidateVode implements Serializable {
+public class ValiDateVode implements Serializable {
 
     private static final long serialVersionUID = 5024357573360737222L;
 
-    public ValidateVode(String code, int expireIn) {
+    public ValiDateVode(String code, int expireIn) {
         this.code = code;
         this.expireTiem = LocalDateTime.now().plusSeconds(expireIn);
     }
 
-    public ValidateVode( String code, LocalDateTime expireTiem) {
+    public ValiDateVode(String code, LocalDateTime expireTiem) {
         this.code = code;
         this.expireTiem = expireTiem;
     }

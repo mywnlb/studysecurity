@@ -2,8 +2,12 @@ package com.imooc.security.browser;
 
 import com.imooc.security.browser.authentication.SelfAuthenticationFailureHandler;
 import com.imooc.security.browser.authentication.SelfAuthenticationSuccessHandler;
+import com.imooc.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.imooc.security.core.properties.SecurityProperties;
+import com.imooc.security.core.validate.code.ValidataCodeSecurityConfig;
+import com.imooc.security.core.validate.code.ValidateCodeBeanConfig;
 import com.imooc.security.core.validate.code.ValidateCodeFilter;
+import com.imooc.security.core.validate.code.ValidateCodeProcessorHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,6 +46,12 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private ValidataCodeSecurityConfig validateCodeSecurityConfig;
+
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
     /**
      *
      * 密码加密解密
@@ -75,17 +85,16 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
      **/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //图形验证码处理器
-        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
-        validateCodeFilter.setAuthenticationFailureHandler(selfAuthenticationFailureHandler);
-        validateCodeFilter.setSecurityProperties(securityProperties);
-        validateCodeFilter.afterPropertiesSet();
+
 
         http.
-             //过滤器配置
-             addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                apply(smsCodeAuthenticationSecurityConfig)
+                .and()
+             //验证码过滤器配置
+                .apply(validateCodeSecurityConfig)
+                .and()
              //登录配置
-             .formLogin()
+                 .formLogin()
                  .loginPage("/authentication/require")
                  .loginProcessingUrl("/authentication/form")
                  .successHandler(selfAuthenticationSuccessHandler)
@@ -99,7 +108,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
              .and()
              //路由匹配
              .authorizeRequests()
-                 .antMatchers(securityProperties.getBrowser().getSignUpUrl(),"/authentication/require","/code/image").permitAll()
+                 .antMatchers(securityProperties.getBrowser().getSignUpUrl(),"/authentication/*","/code/*").permitAll()
                  .anyRequest()
                  .authenticated()
              .and()

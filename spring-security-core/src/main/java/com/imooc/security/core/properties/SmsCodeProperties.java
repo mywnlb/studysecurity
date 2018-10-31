@@ -14,7 +14,7 @@ public class SmsCodeProperties {
     /**
      * 用以配置那些请求需要验证码
      */
-    private String urls;
+    private String url;
 
     public int getLength() {
         return length;
@@ -32,11 +32,13 @@ public class SmsCodeProperties {
         this.exprein = exprein;
     }
 
-    public String getUrls() {
-        return urls;
+    public String getUrl() {
+        return url;
     }
 
-    public void setUrls(String urls) {
-        this.urls = urls;
+    public void setUrl(String url) {
+        this.url = url;
     }
+
+
 }

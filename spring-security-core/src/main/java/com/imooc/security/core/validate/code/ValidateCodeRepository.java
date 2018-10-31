@@ -15,14 +15,14 @@ public interface ValidateCodeRepository {
      * @param code
      * @param validateCodeType
      */
-    void save(ServletWebRequest request, ValidateVode code, ValidateCodeType validateCodeType);
+    void save(ServletWebRequest request, ValiDateVode code, ValidateCodeType validateCodeType);
     /**
      * 获取验证码
      * @param request
      * @param validateCodeType
      * @return
      */
-    ValidateVode get(ServletWebRequest request, ValidateCodeType validateCodeType);
+    ValiDateVode get(ServletWebRequest request, ValidateCodeType validateCodeType);
     /**
      * 移除验证码
      * @param request

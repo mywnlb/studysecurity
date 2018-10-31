@@ -16,7 +16,6 @@ public class DemoController {
 
     @GetMapping("/user")
     public List<User> getUser(@RequestParam(required = false) String username){
-        System.out.println(username);
         List<User> list = new ArrayList<>();
         list.add(new User());
         list.add(new User());

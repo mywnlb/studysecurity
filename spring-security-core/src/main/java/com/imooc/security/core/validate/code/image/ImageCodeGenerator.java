@@ -1,9 +1,10 @@
-package com.imooc.security.core.validate.code;
+package com.imooc.security.core.validate.code.image;
 
 import com.imooc.security.core.properties.SecurityProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.imooc.security.core.validate.code.ValiDateVode;
+import com.imooc.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -12,23 +13,32 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
- * describe: 图形验证码生成
+ * describe:
  *
  * @author lb
- * @date 2018/09/29
+ * @date 2018/10/28
  */
-public class ImageCodeGererator implements ValidateCodeGenerator {
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
+//@Component("imageValidateCodeGenerator")
+public class ImageCodeGenerator implements ValidateCodeGenerator {
+    /**
+     * 系统配置
+     */
     @Autowired
     private SecurityProperties securityProperties;
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.imooc.security.core.validate.code.ValidateCodeGenerator#generate(org.
+     * springframework.web.context.request.ServletWebRequest)
+     */
     @Override
     public ImageCode gererate(ServletWebRequest request) {
-        int width = ServletRequestUtils.getIntParameter(request.getRequest(),"width",securityProperties.getCode().getImage().getWidth());
-        int height = ServletRequestUtils.getIntParameter(request.getRequest(),"height",securityProperties.getCode().getImage().getHeight());
-
+        int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width",
+                securityProperties.getCode().getImage().getWidth());
+        int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
+                securityProperties.getCode().getImage().getHeight());
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         Graphics g = image.getGraphics();
@@ -48,9 +58,6 @@ public class ImageCodeGererator implements ValidateCodeGenerator {
         }
 
         String sRand = "";
-
-        logger.info("验证码长度是:"+securityProperties.getCode().getImage().getLength());
-
         for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;

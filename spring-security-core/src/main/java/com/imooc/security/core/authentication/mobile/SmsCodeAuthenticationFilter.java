@@ -1,5 +1,6 @@
 package com.imooc.security.core.authentication.mobile;
 
+import com.imooc.security.core.properties.SecurityConstants;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,16 +23,14 @@ public class SmsCodeAuthenticationFilter  extends AbstractAuthenticationProcessi
     // ~ Static fields/initializers
     // =====================================================================================
 
-    public static final String IMOOC_FORM_MOBILE_KEY = "mobile";
-
-    private String usernameParameter = IMOOC_FORM_MOBILE_KEY;
+    private String usernameParameter =  SecurityConstants.DEFAULT_PARAMETER_NAME_MOBILE;
     private boolean postOnly = true;
 
     // ~ Constructors
     // ===================================================================================================
 
     public SmsCodeAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/authentication/mobile", "POST"));
+        super(new AntPathRequestMatcher(SecurityConstants.DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE, "POST"));
     }
 
     // ~ Methods
