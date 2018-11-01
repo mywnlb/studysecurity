@@ -22,3 +22,7 @@ com:
          image:
            length: 4
            urls: /user,/user/*
+       social:
+         qq:
+           appId: aa
+           appSecret: bb

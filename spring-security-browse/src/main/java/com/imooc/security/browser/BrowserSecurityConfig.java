@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SocialAuthenticationFilter;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -51,6 +53,13 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+
+    /**
+     * social配置
+     */
+    @Autowired
+    private SpringSocialConfigurer imoocSocialSecurityConfig;
+
 
     /**
      *
@@ -90,6 +99,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 apply(smsCodeAuthenticationSecurityConfig)
                 .and()
+                .apply(imoocSocialSecurityConfig)
+                .and()
              //验证码过滤器配置
                 .apply(validateCodeSecurityConfig)
                 .and()
@@ -108,7 +119,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
              .and()
              //路由匹配
              .authorizeRequests()
-                 .antMatchers(securityProperties.getBrowser().getSignUpUrl(),"/authentication/*","/code/*").permitAll()
+                 .antMatchers(securityProperties.getBrowser().getSignUpUrl(),"/authentication/*","/code/*","/auth/*").permitAll()
                  .anyRequest()
                  .authenticated()
              .and()

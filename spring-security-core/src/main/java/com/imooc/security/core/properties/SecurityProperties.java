@@ -25,6 +25,18 @@ public class SecurityProperties {
 	 */
 	private ValidateCodeProperties code = new ValidateCodeProperties();
 
+	/**
+	 * 社交登录
+	 */
+	private SocialAllProperties social = new SocialAllProperties();
+
+	public SocialAllProperties getSocial() {
+		return social;
+	}
+
+	public void setSocial(SocialAllProperties social) {
+		this.social = social;
+	}
 
 	public ValidateCodeProperties getCode() {
 		return code;

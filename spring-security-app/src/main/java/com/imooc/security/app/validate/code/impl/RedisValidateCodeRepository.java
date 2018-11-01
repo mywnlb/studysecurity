@@ -7,6 +7,7 @@ import com.imooc.security.core.validate.code.ValidateCodeType;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import java.util.concurrent.TimeUnit;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author lb
  * @date 2018/10/28
  */
+@Component
 public class RedisValidateCodeRepository implements ValidateCodeRepository {
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;

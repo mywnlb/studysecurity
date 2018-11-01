@@ -56,6 +56,6 @@ public class QQAdapt implements ApiAdapter<QQ> {
 
     @Override
     public void updateStatus(QQ api, String message) {
-
+        //修改个人主页的内容
     }
 }
